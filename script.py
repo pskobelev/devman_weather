@@ -3,13 +3,13 @@ import asyncio
 
 cities_for_check = ['Лондон', 'Шереметьево', 'Череповец']
 weather_url = 'https://ru.wttr.in'
-params = '?M?n?q?T'
+params = 'MnqT'
 
 
 async def get_weather_for_city(cities):
     async with aiohttp.ClientSession() as session:
         for city in cities:
-            request = f'{weather_url}/{city}{params}'
+            request = f'{weather_url}/{city}?{params}'
 
             async with session.get(request) as resp:
                 city_weather = await resp.text()
